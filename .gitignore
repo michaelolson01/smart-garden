@@ -1,0 +1,61 @@
+# Compiled binary files
+*.elf
+*.bin
+*.hex
+*.eep
+
+# Arduino build folders
+build/
+*.cpp.o
+*.d
+*.dep
+*.a
+
+# Arduino sketch backups and autosaves
+*~ 
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Arduino IDE specific
+__MACOSX/
+.DS_Store
+
+# Arduino IDE project index and metadata
+*.log
+*.pyc
+*.pyo
+*.class
+*.sublime-workspace
+*.sublime-project
+
+# ESP32 core cache (if any)
+hardware/espressif/
+
+# Arduino CLI cache
+.arduino/
+.arduinoIDE/
+
+# VSCode settings (if used)
+.vscode/
+
+# PlatformIO (if you use it later)
+.pio/
+.pioenvs/
+.clangd/
+libdeps/
+
+# Log and data files
+logs/
+*.csv
+*.db
+
+# Ignore credentials/config if added later
+secrets.h
+config.json
+
+# Node-RED / dashboard files (optional)
+node_modules/
+dist/
+.env
