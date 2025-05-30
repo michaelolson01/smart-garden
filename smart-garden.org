@@ -55,7 +55,6 @@ AIoT principles.
 - Host ESP32-based web dashboard
 
 * Notes
-- Use org-babel for inline Arduino snippets
 - Track solar charge cycles over time for AI training data
 
 * Project Links
@@ -82,7 +81,7 @@ AIoT principles.
 |                                             |                                    |         | [[file:smart-garden.org::*Setup arduino-cli and compile sketch][Setup arduino-cli and compile sketch]] |
 #+END:
 
-#+BEGIN_SRC plantuml :file docs/wiring-diagram-colored.png
+#+BEGIN_SRC plantuml :file docs/wiring-diagram.png
 @startuml
 title Smart Garden Wiring Diagram with GPIOs
 
@@ -125,150 +124,9 @@ ESP32 -[#blue]-> Wifi : Wi-Fi data
 #+END_SRC
 
 #+RESULTS:
-[[file:docs/wiring-diagram-colored.png]]
+[[file:docs/wiring-diagram.png]]
 
-#+BEGIN_SRC dot :file docs/garden_layout.png :cmdline -Kdot -Tpng
-digraph Garden {
-  rankdir=TB;
-  nodesep=0.08;
-  ranksep=0.05;
-  node [shape=box width=2 height=1.2 fixedsize=true style=filled fontname="monospace"];
-
-  // Column headers
-  TopA [label="A", shape=plaintext, fontsize=18];
-  TopB [label="B", shape=plaintext, fontsize=18];
-  TopC [label="C", shape=plaintext, fontsize=18];
-  TopD [label="D", shape=plaintext, fontsize=18];
-  TopE [label="E", shape=plaintext, fontsize=18];
-  TopF [label="F", shape=plaintext, fontsize=18];
-  TopG [label="G", shape=plaintext, fontsize=18];
-  TopH [label="H", shape=plaintext, fontsize=18];
-  TopI [label="I", shape=plaintext, fontsize=18];
-  TopJ [label="J", shape=plaintext, fontsize=18];
-
-  // Row headers
-  Left1 [label="1", shape=plaintext, fontsize=18];
-  Left2 [label="2", shape=plaintext, fontsize=18];
-  Left3 [label="3", shape=plaintext, fontsize=18];
-  Left4 [label="4", shape=plaintext, fontsize=18];
-  Left5 [label="5", shape=plaintext, fontsize=18];
-
-  // Grid squares
-  A1 [label="Spinach", fillcolor=darkseagreen];
-  B1 [label="Spinach", fillcolor=darkseagreen];
-  C1 [label="Carrots", fillcolor=orange];
-  D1 [label="Carrots", fillcolor=orange];
-  E1 [label="Radishes", fillcolor=pink];
-  F1 [label="Radishes", fillcolor=pink];
-  G1 [label="Celery", fillcolor=palegreen];
-  H1 [label="Celery", fillcolor=palegreen];
-  I1 [label="Basil", fillcolor=forestgreen];
-  J1 [label="Marigolds", fillcolor=gold];
-
-  A2 [label="Tomato (Cherry)", fillcolor=salmon];
-  B2 [label="Tomato (Heirloom)", fillcolor=salmon];
-  C2 [label="Eggplant", fillcolor=mediumpurple];
-  D2 [label="Eggplant", fillcolor=mediumpurple];
-  E2 [label="Pepper (Bell)\n💧 S1", fillcolor=yellow];
-  F2 [label="Pepper (Hot)", fillcolor=yellow];
-  G2 [label="Thyme", fillcolor=limegreen];
-  H2 [label="Spinach", fillcolor=darkseagreen];
-  I2 [label="Marigolds", fillcolor=gold];
-  J2 [label="Basil", fillcolor=forestgreen];
-
-  A3 [label="Pepper (Hot)", fillcolor=yellow];
-  B3 [label="Pepper (Bell)", fillcolor=yellow];
-  C3 [label="Tomato (Cherry)", fillcolor=salmon];
-  D3 [label="Tomato (Heirloom)\n💧 S2", fillcolor=salmon];
-  E3 [label="Carrots", fillcolor=orange];
-  F3 [label="Radishes", fillcolor=pink];
-  G3 [label="Celery", fillcolor=palegreen];
-  H3 [label="Eggplant", fillcolor=mediumpurple];
-  I3 [label="Basil", fillcolor=forestgreen];
-  J3 [label="Marigolds", fillcolor=gold];
-
-  A4 [label="Carrots", fillcolor=orange];
-  B4 [label="Spinach", fillcolor=darkseagreen];
-  C4 [label="Radishes", fillcolor=pink];
-  D4 [label="Celery", fillcolor=palegreen];
-  E4 [label="Tomato (Heirloom)", fillcolor=salmon];
-  F4 [label="Tomato (Cherry)", fillcolor=salmon];
-  G4 [label="Eggplant\n💧 S3", fillcolor=mediumpurple];
-  H4 [label="Thyme", fillcolor=limegreen];
-  I4 [label="Spinach", fillcolor=darkseagreen];
-  J4 [label="Marigolds", fillcolor=gold];
-
-  A5 [label="Marigolds", fillcolor=gold];
-  B5 [label="Basil", fillcolor=forestgreen];
-  C5 [label="Carrots", fillcolor=orange];
-  D5 [label="Carrots\n💧 S4", fillcolor=orange];
-  E5 [label="Spinach", fillcolor=darkseagreen];
-  F5 [label="Celery", fillcolor=palegreen];
-  G5 [label="Radishes", fillcolor=pink];
-  H5 [label="Pepper (Hot)", fillcolor=yellow];
-  I5 [label="Basil", fillcolor=forestgreen];
-  J5 [label="Marigolds", fillcolor=gold];
-
-  // Align top row headers across
-  {rank=same; TopA; TopB; TopC; TopD; TopE; TopF; TopG; TopH; TopI; TopJ}
-
-  // Connect each header to first row for alignment
-  TopA -> A1 [style=invis];
-  TopB -> B1 [style=invis];
-  TopC -> C1 [style=invis];
-  TopD -> D1 [style=invis];
-  TopE -> E1 [style=invis];
-  TopF -> F1 [style=invis];
-  TopG -> G1 [style=invis];
-  TopH -> H1 [style=invis];
-  TopI -> I1 [style=invis];
-  TopJ -> J1 [style=invis];
-
-  // Column alignments
-  Left1 -> A1 [style=invis];
-  Left2 -> A2 [style=invis];
-  Left3 -> A3 [style=invis];
-  Left4 -> A4 [style=invis];
-  Left5 -> A5 [style=invis];
-
-  // Horizontal row alignment (grid rows)
-  {rank=same; Left1; A1; B1; C1; D1; E1; F1; G1; H1; I1; J1}
-  {rank=same; Left2; A2; B2; C2; D2; E2; F2; G2; H2; I2; J2}
-  {rank=same; Left3; A3; B3; C3; D3; E3; F3; G3; H3; I3; J3}
-  {rank=same; Left4; A4; B4; C4; D4; E4; F4; G4; H4; I4; J4}
-  {rank=same; Left5; A5; B5; C5; D5; E5; F5; G5; H5; I5; J5}
-
-  // Vertical alignment
-  A1 -> A2 [style=invis]; A2 -> A3 [style=invis]; A3 -> A4 [style=invis]; A4 -> A5 [style=invis];
-  B1 -> B2 [style=invis]; B2 -> B3 [style=invis]; B3 -> B4 [style=invis]; B4 -> B5 [style=invis];
-  C1 -> C2 [style=invis]; C2 -> C3 [style=invis]; C3 -> C4 [style=invis]; C4 -> C5 [style=invis];
-  D1 -> D2 [style=invis]; D2 -> D3 [style=invis]; D3 -> D4 [style=invis]; D4 -> D5 [style=invis];
-  E1 -> E2 [style=invis]; E2 -> E3 [style=invis]; E3 -> E4 [style=invis]; E4 -> E5 [style=invis];
-  F1 -> F2 [style=invis]; F2 -> F3 [style=invis]; F3 -> F4 [style=invis]; F4 -> F5 [style=invis];
-  G1 -> G2 [style=invis]; G2 -> G3 [style=invis]; G3 -> G4 [style=invis]; G4 -> G5 [style=invis];
-  H1 -> H2 [style=invis]; H2 -> H3 [style=invis]; H3 -> H4 [style=invis]; H4 -> H5 [style=invis];
-  I1 -> I2 [style=invis]; I2 -> I3 [style=invis]; I3 -> I4 [style=invis]; I4 -> I5 [style=invis];
-  J1 -> J2 [style=invis]; J2 -> J3 [style=invis]; J3 -> J4 [style=invis]; J4 -> J5 [style=invis];
-}
-#+END_SRC
-
-#+RESULTS:
-[[file:docs/garden_grid_labeled.png]]
-
-Row:    1    2    3    4    5
-     --------------------------
-A | Basil             | Tomato1 | Marigold | Tomato2 | Basil
-B | Pepper (Jalepeño) | Spinach | Herb2    | Spinach | Pepper2
-C | Tomato (Cherry)   | Carrot  | Sensor   | Carrot  | Eggplant
-D | Pepper (Bell)     | Radish  | Marigold | Radish  | Celery
-E | Marigold          | Tomato1 | Basil    | Tomato2 | Marigold
-F | Eggplant          | Herb2   | Sensor   | Herb2   | Pepper1
-G | Carrot            | Pepper2 | Radish   | Pepper3 | Carrot
-H | Spinach           | Celery  | Tomato3  | Celery  | Spinach
-I | Marigold          | Basil   | Tomato1  | Basil   | Herb2
-J | Cauliflower       | Radish  | Eggplant | Carrot  | Marigold
-
-#+BEGIN_SRC dot :file docs/garden_layout_2.png :cmdline -Kdot -Tpng
+#+BEGIN_SRC dot :file docs/garden-layout.png :cmdline -Kdot -Tpng
   digraph Garden {
   rankdir=TB;
   nodesep=0.08;
@@ -403,4 +261,5 @@ J | Cauliflower       | Radish  | Eggplant | Carrot  | Marigold
 #+END_SRC
 
 #+RESULTS:
-[[file:docs/garden_layout_2.png]]
+[[file:docs/garden-layout.png]]
+

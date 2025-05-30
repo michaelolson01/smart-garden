@@ -1,3 +1,8 @@
+#+TITLE: Smart Garden Firmware
+#+PROPERTY: header-args:cpp :tangle main.ino :noweb yes :exports code :mkdirp yes
+
+* Includes and Globals
+#+BEGIN_SRC cpp
 #include <Arduino.h>
 #include <Wire.h>
 #include <BH1750.h>
@@ -5,7 +10,10 @@
 
 BH1750 lightMeter;
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
+#+END_SRC
 
+* Setup
+#+BEGIN_SRC cpp
 void setup() {
   Serial.begin(115200);
   Wire.begin();
@@ -16,7 +24,10 @@ void setup() {
     while (1) delay(1);
   }
 }
+#+END_SRC
 
+* Loop
+#+BEGIN_SRC cpp
 void loop() {
   float temp = sht31.readTemperature();
   float humidity = sht31.readHumidity();
@@ -28,3 +39,4 @@ void loop() {
 
   delay(2000);
 }
+#+END_SRC
