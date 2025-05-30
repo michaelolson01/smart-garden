@@ -92,7 +92,3 @@ smart-garden/
 ![Wiring Diagram](docs/wiring-diagram.png)
 ### Garden Layout with Sensors
 ![Garden Layout](docs/garden-layout.png)
-
-## 📜 License
-
-MIT License. Use freely with attribution.
