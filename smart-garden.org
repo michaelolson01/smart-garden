@@ -10,23 +10,25 @@ power. Monitors soil moisture, light, temperature, and humidity using
 AIoT principles.
 
 * Hardware Inventory
-** Microcontroller
+** Microcontroller [1/1]
    - [X] ESP32 Dev Board
-** Sensors
+** Sensors [3/3]
    - [X] SHT31 (Temperature & Humidity)
    - [X] BH1750 (Light Sensor)
    - [X] Capacitive Soil Moisture Sensor
-** Power System
-   - [X] 18650 Battery
+** Power System [5/5]
+   - [X] 18650 Battery x2
    - [X] TP4056 Charging Module
    - [X] MT3608 Boost Converter
+   - [X] 18650x2 Battery Holder
    - [X] 5V Solar Panel
-** Miscellaneous
+** Miscellaneous [3/4]
    - [X] Breadboard
    - [X] Jumper wires
+   - [X] Wi-Fi Extender
    - [ ] Waterproof Enclosure (future)
 
-* Tasks
+* Tasks [21%]
 ** TODO Add SD card logging
 ** TODO Weatherproof all components
 ** TODO Build Grafana dashboard
@@ -81,6 +83,7 @@ AIoT principles.
 |                                             |                                    |         | [[file:smart-garden.org::*Setup arduino-cli and compile sketch][Setup arduino-cli and compile sketch]] |
 #+END:
 
+* Graphs
 #+BEGIN_SRC plantuml :file docs/wiring-diagram.png
 @startuml
 title Smart Garden Wiring Diagram with GPIOs
