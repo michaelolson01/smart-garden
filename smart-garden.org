@@ -1,5 +1,5 @@
 #+TITLE: Smart Garden AIoT Project
-#+AUTHOR: Your Name
+#+AUTHOR: Michael Olson (michaelolson01@gmail.com)
 #+DATE: <2025-05-28>
 #+OPTIONS: toc:nil
 #+TODO:TODO IN-PROGRESS TESTING DONE
