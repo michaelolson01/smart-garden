@@ -51,8 +51,7 @@ logs/
 *.csv
 *.db
 
-# Ignore credentials/config if added later
-secrets.h
+# Ignore credentials/configs
 secrets.cpp
 config.json
 
