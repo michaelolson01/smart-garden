@@ -12,6 +12,7 @@
   #include <WiFi.h>
   #include <WiFiUdp.h>
   #include "secrets.h"
+  #include "version.h"
 
   BH1750 lightMeter;
   Adafruit_SHT31 sht31 = Adafruit_SHT31();
@@ -37,14 +38,14 @@
       int status = WiFi.status();
       if (status == WL_CONNECTED) {
           if (!already_connected) {
-              Serial.print("Connected to ");
-              Serial.println(WiFi.localIP());
+              Serial.printf("Connected to %s\n", WiFi.localIP());
               udp.begin(UDP_PORT);
+              Serial.printf("UDP Started\n");
               udp.beginPacket(UDP_HOST, UDP_PORT);
-              udp.printf("Smart Garden Connected!");
+              udp.printf("Smart Garden %s Connected!\n", FIRMWARE_VERSION);
               udp.endPacket();
               ArduinoOTA.begin();
-              Serial.println("OTA Started");
+              Serial.printf("OTA Started\n");
               already_connected = true;
           }
       } else {
@@ -135,6 +136,7 @@
 
       analogReadResolution(12);
 
+      Serial.printf("Firmware %s started.\n Initializing tickers\n", FIRMWARE_VERSION);
       soilMoistureTicker.attach(600.0, soilMoistureSensorAction);
       lightLevelTicker.attach(60.0, lightLevelSensorAction);
       wifiTicker.attach(5.0, testWifiConnection);

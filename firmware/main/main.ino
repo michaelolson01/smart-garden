@@ -7,6 +7,7 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include "secrets.h"
+#include "version.h"
 
 BH1750 lightMeter;
 Adafruit_SHT31 sht31 = Adafruit_SHT31();
@@ -33,7 +34,7 @@ void testWifiConnection() {
             Serial.println(WiFi.localIP());
             udp.begin(UDP_PORT);
             udp.beginPacket(UDP_HOST, UDP_PORT);
-            udp.printf("Smart Garden Connected!");
+            udp.printf("Smart Garden %s Connected!", FIRMWARE_VERSION);
             udp.endPacket();
             ArduinoOTA.begin();
             Serial.println("OTA Started");
@@ -53,9 +54,9 @@ void testWifiConnection() {
 }
 
 void OTAUpdateSetup() {
-	ArduinoOTA.setHostname("smartGarden");
+    ArduinoOTA.setHostname("smartGarden");
 
-	ArduinoOTA.onStart([]() {
+    ArduinoOTA.onStart([]() {
         const char* type = ArduinoOTA.getCommand() == U_FLASH ? "sketch" : "filesystem";
         Serial.println("Start updating " + String(type));
         udp.beginPacket(UDP_HOST, UDP_PORT);
@@ -70,20 +71,20 @@ void OTAUpdateSetup() {
         udp.endPacket();
     });
 
-	ArduinoOTA.onError([](ota_error_t error) {
-		Serial.printf("OTA Error[%u]: ", error);
-		if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
-		else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
-		else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
-		else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
-		else if (error == OTA_END_ERROR) Serial.println("End Failed");
+    ArduinoOTA.onError([](ota_error_t error) {
+        Serial.printf("OTA Error[%u]: ", error);
+        if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+        else if (error == OTA_BEGIN_ERROR) Serial.println("Begin Failed");
+        else if (error == OTA_CONNECT_ERROR) Serial.println("Connect Failed");
+        else if (error == OTA_RECEIVE_ERROR) Serial.println("Receive Failed");
+        else if (error == OTA_END_ERROR) Serial.println("End Failed");
 
-		udp.beginPacket(UDP_HOST, UDP_PORT);
-		udp.printf("OTA Error[%u]\n", error);
-		udp.endPacket();
-	});
+        udp.beginPacket(UDP_HOST, UDP_PORT);
+        udp.printf("OTA Error[%u]\n", error);
+        udp.endPacket();
+    });
 
-	ArduinoOTA.setPassword(OTA_PASSWORD);
+    ArduinoOTA.setPassword(OTA_PASSWORD);
 
 }
 
@@ -118,6 +119,7 @@ void setup() {
 
     analogReadResolution(12);
 
+    Serial.printf("Firmware %s started.\n Initializing tickers\n", FIRMWARE_VERSION);
     soilMoistureTicker.attach(600.0, soilMoistureSensorAction);
     lightLevelTicker.attach(60.0, lightLevelSensorAction);
     wifiTicker.attach(5.0, testWifiConnection);
