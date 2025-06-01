@@ -38,3 +38,5 @@ ota: compile_ota
 	python3 $(ESPOTA) -i $(OTA_HOST) -p $(OTA_PORT) \
         --progress --auth OTA_Password --file $(BIN_FILE)
 
+changelog:
+	bash scripts/gen-changelog.sh >> CHANGELOG.md
