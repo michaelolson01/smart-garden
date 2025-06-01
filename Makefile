@@ -19,5 +19,8 @@ compile: tangle
 upload: compile
 	arduino-cli upload -p $(PORT) --fqbn $(BOARD_FQBN) $(SKETCH_DIR)
 
+monitor:
+	picocom --baud 115200 ${PORT}
+
 clean:
 	rm -rf $(SKETCH_DIR)/build
