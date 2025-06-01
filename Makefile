@@ -1,5 +1,5 @@
 # === Arduino Project Configuration ===
-# BOARD_FQBN=esp32:esp32:esp32 
+# BOARD_FQBN=esp32:esp32:esp32
 BOARD_FQBN=esp32:esp32:mhetesp32devkit
 SKETCH_DIR=firmware/main
 ORG_FILE=$(SKETCH_DIR)/main.org
