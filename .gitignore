@@ -53,6 +53,7 @@ logs/
 
 # Ignore credentials/config if added later
 secrets.h
+secrets.cpp
 config.json
 
 # Node-RED / dashboard files (optional)
