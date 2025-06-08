@@ -28,6 +28,7 @@ compile_ota: tangle
 upload: compile
 	arduino-cli upload -p $(PORT) --fqbn $(BOARD_FQBN) $(SKETCH_DIR)
 
+# Fix this so it makes the monitor, not picocom.
 monitor:
 	picocom --baud 115200 ${PORT}
 
