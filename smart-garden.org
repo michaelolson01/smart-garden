@@ -9,18 +9,64 @@ ESP32-powered smart garden system using IoT sensors and solar
 power. Monitors soil moisture, light, temperature, and humidity using
 AIoT principles.
 
+* Design
+** Cluster design
+   - *ESP8266 Sensors for cluster (Nodes)*
+     - 1 Light sensor (BH1750)
+     - 4 Soil Moisture Sensors
+     - 1 Air Temperature and Humidity Sensor (SHT31)
+     * 1 NPK Sensor for cluster (See if I can find one under $50.00 or
+       if it is possible to make one.)
+     - All have simple authenticated send/receive through MQTT protocol.
+       - receive: report on sensor(s)
+       - send: data from sensor(s)
+       - only allowed communication with Assigned Hub (ESP32)
+   - *Automatable devices (Automata)*
+     - Water distribution units
+     - Light distribution units
+     * Nutrient distribution units (How to turn compost into a liquid?)
+     - All have simple authenticated send/receive through MQTT protocol.
+       - receive: start/stop/status
+       - send: status
+   - *ESP32 Hubs for clusters (Hub)*
+     - Minor Management
+       - Ex. If all soil sensors are indicating dry soil, start
+         watering system if the Linux system is okay with it.
+     - Communicates with Nodes and Automata
+       - Sends and receives requests and responses by MQTT protocol to Nodes.
+       - Nodes can only communicate with assigned Hub.
+     - Communicates with Linux System through2 authenticated protocols
+   - *Linux System (Base System)*
+     - Monitors System.
+     - Runs AI to make predictive analysis for healthy system.
+       - Monitors Local Weather predictions to determine needs of
+         garden.
+         - Is it going to need water soon?
+         - Is there going to be enough light?
+         - Have the tomatoes had enough hardship to bloom?
+         - Is a tornado going to destroy everything?
+         - Is it going to be too hot/cold for the plants?
+
 * Hardware Inventory
-** Microcontroller [1/1]
+** Microcontrollers [2/2]
    - [X] ESP32 Dev Board
-** Sensors [3/3]
-   - [X] SHT31 (Temperature & Humidity)
+   - [X] ESP8266 D1 mini Dev Board
+** Sensors [2/6]
+   - [ ] SHT31 (Temperature & Humidity)
    - [X] BH1750 (Light Sensor)
    - [X] Capacitive Soil Moisture Sensor
+   - [ ] Barometer
+   - [ ] Cameras (for disease analysis)
+   - PH/NPK Sensors are needed at most every 3 days, so it seems they
+     could be integrated into the garden, but would have to be
+     manually moved before use, probably better just to have the
+     gardener take the PH/NPK readings occasionally. Both analyses
+     works better when a soil sample is taken and processed anyways.
 ** Power System [5/5]
    - [X] 18650 Battery x2
    - [X] TP4056 Charging Module
    - [X] MT3608 Boost Converter
-   - [X] 18650x2 Battery Holder
+   - [X] 18650x2 Battery Holder1
    - [X] 5V Solar Panel
 ** Miscellaneous [3/4]
    - [X] Breadboard
@@ -28,21 +74,61 @@ AIoT principles.
    - [X] Wi-Fi Extender
    - [ ] Waterproof Enclosure (future)
 
-* Tasks [21%]
-** TODO Add SD card logging
+* Tasks [28%]
+** TODO Add Base System logging
 ** TODO Weatherproof all components
-** TODO Build Grafana dashboard
+** IN-PROGRESS Build Monitor
 ** TODO Create GitHub wiki or documentation
 ** TODO Tune MT3608 output to stable 5.0V
-** TODO Add serial or cloud data logging
-** TODO Evaluate moisture thresholds for irrigation
-** IN-PROGRESS Wire up soil moisture sensor
-** IN-PROGRESS Test deep sleep on ESP32
+** TODO Add serial logging
+** DONE Wire up soil moisture sensor
 ** IN-PROGRESS Solar panel performance testing
 ** IN-PROGRESS Wait for materials to be delivered
-** DONE Install Adafruit SHT31 library
-** DONE Install BH1750 library
-** DONE Setup arduino-cli and compile sketch
+** IN-PROGRESS Program ESP32 [0/4]
+   - [ ] Determine Deep-Sleep and implement
+   - [ ] Setup MQTT for Node communication
+     - Send a request for sensor status
+     - Receive a JSON with status(es)
+   - [ ] Setup MQTT for Base System Communication
+     - Send Status of all sensors every period (determined later)
+     - Receive commands for Automata
+   - [ ] Setup cluster automation (Able to be overridden by Base System)
+     - Water if all dry
+     - Light if not enough light
+     - Fertilize if not enough nutrients
+** IN-PROGRESS Wire up ESP8266s [0/8]
+   - Should Light/Barometer/Termperature/Humidity be integrated?
+   - [ ] Wire up Skeleton
+     - Battery
+     - Solar Panel
+     - MT3608 or equivalent
+   - [ ] Wire up Moisture Sensor
+   - [ ] Wire up Light Sensor
+   - [ ] Wire up Temperature & Humidity Sensor
+   - [ ] Wire up Barometer Sensor
+   - [ ] Wire up Camera
+** IN-PROGRESS Program ESP8266s [0/8]
+   - [ ] Create Skeleton (MQTT, etc...)
+     - This part will be the same for all sensors.
+   - [ ] Program Moisture Sensor
+   - [ ] Program Light Sensor
+   - [ ] Program Temperature/Humidity Sensor
+   - [ ] Program Barometer Sensor
+   - [ ] Program Cameras
+** IN-PROGRESS Program Base System [0/3]
+   - [ ] Setup Communications with Hub(s)
+   - [ ] Evaluate thresholds of Sensors
+     - Soil Moisture Sensor
+     - Light Sensor
+     - NPK Sensor
+     - Barometer Sensor
+     - PH Sensor
+     - Temperature & Humidity Sensor
+   - [ ] Setup AI systems
+     - Disease analysis
+     - Weather analysis (Moisture / Light)
+     - Nutrient analysis
+     - PH analysis
 
 * Wiring Notes
 - SHT31 → I²C (SDA=GPIO21, SCL=GPIO22)
