@@ -78,12 +78,14 @@ AIoT principles.
 ** TODO Add Base System logging
 ** TODO Weatherproof all components
 ** IN-PROGRESS Build Monitor
+*** Make tests for monitor
 ** TODO Create GitHub wiki or documentation
 ** TODO Tune MT3608 output to stable 5.0V
 ** TODO Add serial logging
 ** DONE Wire up soil moisture sensor
 ** IN-PROGRESS Solar panel performance testing
 ** IN-PROGRESS Wait for materials to be delivered
+** TODO Reorganize source structure.
 ** IN-PROGRESS Program ESP32 [0/4]
    - [ ] Determine Deep-Sleep and implement
    - [ ] Setup MQTT for Node communication
