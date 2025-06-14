@@ -74,7 +74,7 @@ AIoT principles.
    - [X] Wi-Fi Extender
    - [ ] Waterproof Enclosure (future)
 
-* Tasks [28%]
+* Tasks [7%]
 ** TODO Add Base System logging
 ** TODO Weatherproof all components
 ** IN-PROGRESS Build Monitor
@@ -85,7 +85,7 @@ AIoT principles.
 ** DONE Wire up soil moisture sensor
 ** IN-PROGRESS Solar panel performance testing
 ** IN-PROGRESS Wait for materials to be delivered
-** TODO Reorganize source structure.
+** IN-PROGRESS Reorganize source structure.
     smart-garden
     ├── CHANGELOG.md
     ├── docs
@@ -95,6 +95,7 @@ AIoT principles.
     │   ├── garden-layout.png
     │   ├── WeMos-D1-mini-esp8266-pinout-mischianti-low-1024x467.jpg
     │   └── wiring-diagram.png
+    ├── libraries <- holds all the arduino-cli libraries
     ├── src
     │   ├── secrets
     │   │   ├── secrets.cpp <- this will not go to GitHub.
@@ -104,12 +105,16 @@ AIoT principles.
     │   │   ├── Makefile
     │   │   ├── main.ino
     │   │   ├── main.org
+    │   │   ├── secrets.cpp <- link to ../secrets/secrets.cpp
+    │   │   ├── secrets.h <- link to ../secrets/secrets.h
     │   │   └── version.h
-    │   ├── soil-moisture-main
+    │   ├── soil-moisture-sensor
     │   │   ├── Makefile
     │   │   ├── version.h
-    │   │   ├── soil-moisture.ino
-    │   │   └── soil-moisture.org
+    │   │   ├── soil-moisture-sensor.ino
+    │   │   ├── secrets.cpp <- link to ../secrets/secrets.cpp
+    │   │   ├── secrets.h <- link to ../secrets/secrets.h
+    │   │   └── soil-moisture-sensor.org
     │   └── monitor
     │       ├── Makefile
     │       ├── garden_monitor

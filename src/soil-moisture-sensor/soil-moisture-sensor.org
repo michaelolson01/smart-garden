@@ -1,5 +1,5 @@
 #+TITLE: ESP8266 Soil Moisture Sensor
-#+PROPERTY: header-args:cpp :tangle wemos-main.ino :noweb yes :exports code :mkdirp yes
+#+PROPERTY: header-args:cpp :tangle soil-moisture-sensor.ino :noweb yes :exports code :mkdirp yes
 
 * TODO Updates
 ** This needs to be rewritten to use MQTT protocol with authentication.
