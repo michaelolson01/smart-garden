@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.0] - 2025-06-14
+### Structure Reorganization
+- Filesystem reorganized
+- Makefiles rewritten
+
 ## [1.1.0] - 2025-06-01
 ### Added
 - Report firmware version via UDP and Serial.
@@ -8,3 +13,4 @@
 ## [1.0.0] - 2025-05-30
 ### Added
 - Initial working version with OTA, sensor readings, and UDP logging.
+
