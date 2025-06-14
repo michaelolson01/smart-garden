@@ -22,19 +22,14 @@ compile: tangle
         --build-path $(BUILD_DIR) \
 	 $(SKETCH_DIR)
 
-compile_ota: tangle
-	arduino-cli compile --fqbn $(BOARD_FQBN) $(BUILD_PROPERTIES) \
-        --build-path $(BUILD_DIR) \
-        $(SKETCH_DIR)
-
 upload: compile
 	arduino-cli upload -p $(PORT) --fqbn $(BOARD_FQBN) \
         --build-path $(BUILD_DIR) \
 	$(SKETCH_DIR)
 
-ota: compile_ota
+ota: compile
 	python3 $(ESPOTA) -i $(OTA_HOST) -p $(OTA_PORT) \
         --progress --auth OTA_Password --file $(BIN_FILE)
 
 clean:
-	rm -rf $(BUILD_DIR) $(WEMOS_BUILD_DIR)
+	rm -rf $(BUILD_DIR)

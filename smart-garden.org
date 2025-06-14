@@ -74,7 +74,7 @@ AIoT principles.
    - [X] Wi-Fi Extender
    - [ ] Waterproof Enclosure (future)
 
-* Tasks [7%]
+* Tasks [14%]
 ** TODO Add Base System logging
 ** TODO Weatherproof all components
 ** IN-PROGRESS Build Monitor
@@ -85,7 +85,7 @@ AIoT principles.
 ** DONE Wire up soil moisture sensor
 ** IN-PROGRESS Solar panel performance testing
 ** IN-PROGRESS Wait for materials to be delivered
-** IN-PROGRESS Reorganize source structure.
+** DONE Reorganize source structure.
     smart-garden
     ├── CHANGELOG.md
     ├── docs
@@ -139,13 +139,13 @@ AIoT principles.
      - Water if all dry
      - Light if not enough light
      - Fertilize if not enough nutrients
-** IN-PROGRESS Wire up ESP8266s [0/8]
+** TODO Wire up ESP8266s [1/6]
    - Should Light/Barometer/Termperature/Humidity be integrated?
    - [ ] Wire up Skeleton
      - Battery
      - Solar Panel
      - MT3608 or equivalent
-   - [ ] Wire up Moisture Sensor
+   - [X] Wire up Moisture Sensor
    - [ ] Wire up Light Sensor
    - [ ] Wire up Temperature & Humidity Sensor
    - [ ] Wire up Barometer Sensor
@@ -194,22 +194,22 @@ AIoT principles.
 - [[https://cdn-learn.adafruit.com/downloads/pdf/adafruit-sht31-temperature-humidity-sensor-breakout.pdf][SHT31 Datasheet]]
 
 #+BEGIN: kanban :mirrored nil
-| TODO                                        | IN-PROGRESS                        | TESTING | DONE                                 |
-|---------------------------------------------+------------------------------------+---------+--------------------------------------|
-| [[file:smart-garden.org::*Add SD card logging][Add SD card logging]]                         |                                    |         |                                      |
-| [[file:smart-garden.org::*Weatherproof all components][Weatherproof all components]]                 |                                    |         |                                      |
-| [[file:smart-garden.org::*Build Grafana dashboard][Build Grafana dashboard]]                     |                                    |         |                                      |
-| [[file:smart-garden.org::*Create GitHub wiki or documentation][Create GitHub wiki or documentation]]         |                                    |         |                                      |
-| [[file:smart-garden.org::*Tune MT3608 output to stable 5.0V][Tune MT3608 output to stable 5.0V]]           |                                    |         |                                      |
-| [[file:smart-garden.org::*Add serial or cloud data logging][Add serial or cloud data logging]]            |                                    |         |                                      |
-| [[file:smart-garden.org::*Evaluate moisture thresholds for irrigation][Evaluate moisture thresholds for irrigation]] |                                    |         |                                      |
-|                                             | [[file:smart-garden.org::*Wire up soil moisture sensor][Wire up soil moisture sensor]]       |         |                                      |
-|                                             | [[file:smart-garden.org::*Test deep sleep on ESP32][Test deep sleep on ESP32]]           |         |                                      |
-|                                             | [[file:smart-garden.org::*Solar panel performance testing][Solar panel performance testing]]    |         |                                      |
-|                                             | [[file:smart-garden.org::*Wait for materials to be delivered][Wait for materials to be delivered]] |         |                                      |
-|                                             |                                    |         | [[file:smart-garden.org::*Install Adafruit SHT31 library][Install Adafruit SHT31 library]]       |
-|                                             |                                    |         | [[file:smart-garden.org::*Install BH1750 library][Install BH1750 library]]               |
-|                                             |                                    |         | [[file:smart-garden.org::*Setup arduino-cli and compile sketch][Setup arduino-cli and compile sketch]] |
+| TODO                                | IN-PROGRESS                        | TESTING | DONE                         |
+|-------------------------------------+------------------------------------+---------+------------------------------|
+| [[file:smart-garden.org::*Add Base System logging][Add Base System logging]]             |                                    |         |                              |
+| [[file:smart-garden.org::*Weatherproof all components][Weatherproof all components]]         |                                    |         |                              |
+|                                     | [[file:smart-garden.org::*Build Monitor][Build Monitor]]                      |         |                              |
+| [[file:smart-garden.org::*Create GitHub wiki or documentation][Create GitHub wiki or documentation]] |                                    |         |                              |
+| [[file:smart-garden.org::*Tune MT3608 output to stable 5.0V][Tune MT3608 output to stable 5.0V]]   |                                    |         |                              |
+| [[file:smart-garden.org::*Add serial logging][Add serial logging]]                  |                                    |         |                              |
+|                                     |                                    |         | [[file:smart-garden.org::*Wire up soil moisture sensor][Wire up soil moisture sensor]] |
+|                                     | [[file:smart-garden.org::*Solar panel performance testing][Solar panel performance testing]]    |         |                              |
+|                                     | [[file:smart-garden.org::*Wait for materials to be delivered][Wait for materials to be delivered]] |         |                              |
+|                                     |                                    |         | [[file:smart-garden.org::*Reorganize source structure.][Reorganize source structure.]] |
+|                                     | [[file:smart-garden.org::*Program ESP32 ][Program ESP32 [0/4]]]                |         |                              |
+|                                     | [[file:smart-garden.org::*Wire up ESP8266s ][Wire up ESP8266s [0/8]]]             |         |                              |
+|                                     | [[file:smart-garden.org::*Program ESP8266s ][Program ESP8266s [0/8]]]             |         |                              |
+|                                     | [[file:smart-garden.org::*Program Base System ][Program Base System [0/3]]]          |         |                              |
 #+END:
 
 * Graphs
