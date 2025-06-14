@@ -51,12 +51,12 @@ AIoT principles.
 ** Microcontrollers [2/2]
    - [X] ESP32 Dev Board
    - [X] ESP8266 D1 mini Dev Board
-** Sensors [2/6]
+** Sensors [3/5]
    - [ ] SHT31 (Temperature & Humidity)
    - [X] BH1750 (Light Sensor)
    - [X] Capacitive Soil Moisture Sensor
    - [ ] Barometer
-   - [ ] Cameras (for disease analysis)
+   - [X] Cameras (for disease analysis)
    - PH/NPK Sensors are needed at most every 3 days, so it seems they
      could be integrated into the garden, but would have to be
      manually moved before use, probably better just to have the
@@ -86,6 +86,42 @@ AIoT principles.
 ** IN-PROGRESS Solar panel performance testing
 ** IN-PROGRESS Wait for materials to be delivered
 ** TODO Reorganize source structure.
+    smart-garden
+    ├── CHANGELOG.md
+    ├── docs
+    │   ├── Equipment list.ods
+    │   ├── ESP32+ESP-WROOM-32+Development+Board++-+Twins+Chip+D-3364766435.jpg
+    │   ├── ESP8266-WeMos-D1-Mini-pinout-gpio-pin.png
+    │   ├── garden-layout.png
+    │   ├── WeMos-D1-mini-esp8266-pinout-mischianti-low-1024x467.jpg
+    │   └── wiring-diagram.png
+    ├── src
+    │   ├── secrets
+    │   │   ├── secrets.cpp <- this will not go to GitHub.
+    │   │   ├── secrets.h
+    │   │   └── secrets_example.cpp
+    │   ├── main
+    │   │   ├── Makefile
+    │   │   ├── main.ino
+    │   │   ├── main.org
+    │   │   └── version.h
+    │   ├── soil-moisture-main
+    │   │   ├── Makefile
+    │   │   ├── version.h
+    │   │   ├── soil-moisture.ino
+    │   │   └── soil-moisture.org
+    │   └── monitor
+    │       ├── Makefile
+    │       ├── garden_monitor
+    │       ├── garden_monitor.cpp
+    │       ├── garden_monitor-eh.cpp
+    │       └── json.hpp
+    ├── LICENSE
+    ├── Makefile
+    ├── README.md
+    ├── scripts
+    │   └── gen-changelog.sh
+    └── smart-garden.org <- you are here.
 ** IN-PROGRESS Program ESP32 [0/4]
    - [ ] Determine Deep-Sleep and implement
    - [ ] Setup MQTT for Node communication
@@ -353,4 +389,3 @@ ESP32 -[#blue]-> Wifi : Wi-Fi data
 
 #+RESULTS:
 [[file:docs/garden-layout.png]]
-
