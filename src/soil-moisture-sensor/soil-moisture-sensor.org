@@ -7,7 +7,6 @@
 *** Soil Moisture Sensor
 *** Light Sensor
 *** Humidity/Temperature Sensor
-*** NPK Sensor
 *** Barometer as a possible future sensor.
 ** The only device these should be allowed to send/receive from is their programmed hub (ESP32)
 
@@ -32,7 +31,7 @@
     const int led = LED_BUILTIN;
 
   // In milliseconds
-  const unsigned int soil_moisture_frequency = 600;
+  const unsigned int soil_moisture_frequency = 600 // for testing normally 600000;
 
   bool already_connected = false;
 
@@ -111,25 +110,25 @@
 
 * Setup
 #+BEGIN_SRC cpp
-     void setup() {
-         Serial.begin(115200);
-         initWifi();
-         // Initialize the Wire
-         Wire.begin();
+  void setup() {
+      Serial.begin(115200);
+      initWifi();
+      // Initialize the Wire
+      Wire.begin();
 
-         Serial.printf("Firmware %s started.\n Initializing tickers\n", FIRMWARE_VERSION);
+      Serial.printf("Firmware %s started.\n Initializing tickers\n", FIRMWARE_VERSION);
 
-         // Check wifi every 5 seconds
-         wifiTicker.attach(5.0, testWifiConnection);
+      // Check wifi every 5 seconds
+      wifiTicker.attach(5.0, testWifiConnection);
 
-         // Check the moisture sensors once every soil_moisture_frequency
-         soilMoistureTicker.attach_ms(soil_moisture_frequency, soilMoistureSensorAction);
+      // Check the moisture sensors once every soil_moisture_frequency
+      soilMoistureTicker.attach_ms(soil_moisture_frequency, soilMoistureSensorAction);
   }
 #+END_SRC
 
 * Loop
 #+BEGIN_SRC cpp
   void loop() {
-  	// Nothing at the moment
+      // Nothing at the moment
   }
 #+END_SRC
