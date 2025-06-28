@@ -31,7 +31,7 @@
     const int led = LED_BUILTIN;
 
   // In milliseconds
-  const unsigned int soil_moisture_frequency = 600 // for testing normally 600000;
+  const unsigned int soil_moisture_frequency = 600; // for testing normally 600000;
 
   bool already_connected = false;
 
@@ -40,7 +40,7 @@
 
 * UDP Messaging
 #+BEGIN_SRC cpp
-  void sendJson(const char* type, JsonVariant data) {
+  void sendJson(const char *type, JsonVariant data) {
       StaticJsonDocument<256> doc;
       doc["type"] = type;
       doc["data"] = data;
@@ -49,11 +49,11 @@
       size_t len = serializeJson(doc, buffer);
 
       udp.beginPacket(UDP_HOST, UDP_PORT);
-      udp.write((uint8_t*)buffer, len);
+      udp.write((uint8_t *)buffer, len);
       udp.endPacket();
   }
 
-  void sendStatusMessage(const char* msg) {
+  void sendStatusMessage(const char *msg) {
       StaticJsonDocument<64> data;
       data["message"] = msg;
       sendJson("status", data.as<JsonVariant>());

@@ -236,15 +236,14 @@
 
 * Loop
 #+BEGIN_SRC cpp
-     void loop() {
-         ArduinoOTA.handle();
-       // float temp = sht31.readTemperature();
-       // float humidity = sht31.readHumidity();
+  void loop() {
+      ArduinoOTA.handle();
+    // float temp = sht31.readTemperature();
+    // float humidity = sht31.readHumidity();
 
-       // Serial.print("Temp: "); Serial.print(temp); Serial.print(" C\t");
-       // Serial.print("Humidity: "); Serial.print(humidity); Serial.print(" %\t");
+    // Serial.print("Temp: "); Serial.print(temp); Serial.print(" C\t");
+    // Serial.print("Humidity: "); Serial.print(humidity); Serial.print(" %\t");
 
-       // delay(2000);
-     }
+    // delay(2000);
+  }
 #+END_SRC
-
