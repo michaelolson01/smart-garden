@@ -1,0 +1,88 @@
+#+TITLE: Smart Garden Firmware
+#+PROPERTY: header-args:cpp :tangle sg-node.ino :noweb yes :exports code :mkdirp yes
+
+* Includes and Globals
+#+BEGIN_SRC cpp
+  #include <esp_now.h>
+  #include <WiFi.h>
+  #include <ArduinoJson.h>
+  #include <time.h>
+  #include <Ticker.h>
+  #include "secrets.h"
+  #include "version.h"
+  #define DATA_SEND_FREQUENCY 600
+
+  Ticker sendDataTicker;
+
+  bool espNowInitialized = false;
+
+  // MAC address of the receiver
+  uint8_t broadcastAddress[] = ESP_NOW_RECEIVER_MAC;
+
+  void OnDataSent(const uint8_t *, esp_now_send_status_t);
+#+END_SRC
+
+* Sensor Data Sending functions
+#+BEGIN_SRC cpp
+  void onDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+      Serial.printf("Last packet send status: Delivery %s\n",
+                    status == ESP_NOW_SEND_SUCCESS ? "Success" : "Failure");
+  }
+
+  void sendData() {
+      if (espNowIntialized) {
+          char mydata[250] = "This will be a json formatted data transmission.\n";
+          esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
+
+          if (result == ESP_OK) {
+              Serial.printf("Message Successfully Sent.\n");
+          } else {
+              Serial.printf("Error Sending Message.\n");
+          }
+      } else {
+          Serial.printf("ESP-NOW not initialized.\n")
+      }
+  }
+#+END_SRC
+
+* WiFi Setup
+#+BEGIN_SRC cpp
+  void initESPnow() {
+      WiFi.mode(WIFI_STA);
+  }
+
+  void initESPNow() {
+      if (esp_now_init() != ESP_OK) {
+          Serial.printf("Error initializing ESP-NOW.\n");
+          espNowInitialized = false;
+      } else {
+          esp_now_register_send_cb(onDataSent);
+          memcpy(peerInfo.peer_addr, broadcastAddress, 6);
+          peerInfo.channel = 0;
+          peerInfo.encrypt = false;
+
+          if (esp_now_add_peer(&peerInfo) != ESP_OK) {
+              Serial.printf("Failed to add peer.\n");
+          } else {
+              espNowInitialized = true;
+              Serial.printf("ESP-NOW initialized for Sending.\n");
+          }
+      }
+  }
+#+END_SRC
+
+* Setup
+#+BEGIN_SRC cpp
+     void setup() {
+         Serial.begin(115200);
+
+         initESPnow();
+         sendDataTicker.attach_ms(DATA_SEND_FREQUENCY, sendData);
+  }
+#+END_SRC
+
+* Loop
+#+BEGIN_SRC cpp
+  void loop() {
+  }
+#+END_SRC

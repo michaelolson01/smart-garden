@@ -1,0 +1,3 @@
+#!/bin/bash
+
+arduino-cli monitor -p /dev/ttyUSB0 -b esp32:esp32:mhetesp32devkit --config 115200

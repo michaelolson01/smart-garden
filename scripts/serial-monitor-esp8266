@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo This assumes the esp8266 is on /dev/ttyUSB0.
+arduino-cli monitor -p /dev/ttyUSB0 -b esp8266:esp8266:d1_mini --config 115200

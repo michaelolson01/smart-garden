@@ -7,4 +7,7 @@ const char *WIFI_SSID = "Your wifi SSID";
 const char *WIFI_PASSWORD = "Your wifi password";
 const char *UDP_HOST = "Host address";
 const int UDP_PORT = 0000; // Insert port here
-const char *ITA_PASSWORD = "An OTA Password";
+const char *OTA_PASSWORD = "An OTA Password"
+// The MAC address of the Receiver ESP32 module
+const uint8_t *ESP_NOW_RECEIVER_MAC = {0x99, 0x99, 0x99, 0x99, 0x99, 0x99};
+

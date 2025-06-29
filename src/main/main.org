@@ -79,6 +79,7 @@
       if (status == WL_CONNECTED) {
           if (!already_connected) {
               Serial.printf("Connected to %s\n", WiFi.localIP());
+              Serial.println("MAC: %s", WiFi.macAddress());
               udp.begin(UDP_PORT);
               Serial.printf("UDP Started\n");
               char message[64];

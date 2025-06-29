@@ -1,31 +1,31 @@
 #include <Arduino.h>
-  #include <ArduinoOTA.h>
-  #include <Wire.h>
-  #include <BH1750.h>
-  #include <Adafruit_SHT31.h>
-  #include <Ticker.h>
-  #include <WiFi.h>
-  #include <WiFiUdp.h>
-  #include <ArduinoJson.h>
-  #include "secrets.h"
-  #include "version.h"
+#include <ArduinoOTA.h>
+#include <Wire.h>
+#include <BH1750.h>
+#include <Adafruit_SHT31.h>
+#include <Ticker.h>
+#include <WiFi.h>
+#include <WiFiUdp.h>
+#include <ArduinoJson.h>
+#include "secrets.h"
+#include "version.h"
 
-  BH1750 lightMeter;
-  Adafruit_SHT31 sht31 = Adafruit_SHT31();
-  Ticker soilMoistureTicker1;
-  Ticker soilMoistureTicker2;
-  Ticker soilMoistureTicker3;
-  Ticker soilMoistureTicker4;
-  Ticker lightLevelTicker;
-  Ticker wifiTicker;
+BH1750 lightMeter;
+Adafruit_SHT31 sht31 = Adafruit_SHT31();
+Ticker soilMoistureTicker1;
+Ticker soilMoistureTicker2;
+Ticker soilMoistureTicker3;
+Ticker soilMoistureTicker4;
+Ticker lightLevelTicker;
+Ticker wifiTicker;
 
-  WiFiUDP udp;
+WiFiUDP udp;
 
-  // One for each soil moisture monitor
-  const int soilPin1 = 32;
-  const int soilPin2 = 33;
-  const int soilPin3 = 34;
-  const int soilPin4 = 35;
+// One for each soil moisture monitor
+const int soilPin1 = 32;
+const int soilPin2 = 33;
+const int soilPin3 = 34;
+const int soilPin4 = 35;
 
 // In milliseconds
 const unsigned int soil_moisture_frequency = 600000;
@@ -68,6 +68,7 @@ void testWifiConnection() {
     if (status == WL_CONNECTED) {
         if (!already_connected) {
             Serial.printf("Connected to %s\n", WiFi.localIP());
+			Serial.println(WiFi.macAddress());
             udp.begin(UDP_PORT);
             Serial.printf("UDP Started\n");
             char message[64];
