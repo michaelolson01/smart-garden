@@ -17,7 +17,7 @@
   bool espNowInitialized = false;
 
   // MAC address of the receiver
-  uint8_t broadcastAddress[] = ESP_NOW_RECEIVER_MAC;
+  uint8_t broadcastAddress[] = HUB_MAC;
 
   void OnDataSent(const uint8_t *, esp_now_send_status_t);
 #+END_SRC
