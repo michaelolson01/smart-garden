@@ -1,7 +1,19 @@
-#+TITLE: Smart Garden Firmware
+#+TITLE: Sensor Node Skeleton Source
 #+PROPERTY: header-args:cpp :tangle sg-node.ino :noweb yes :exports code :mkdirp yes
 
-* Includes and Globals
+* Project notes
+** TODO Create for each sensor type
+Soil Moisture Sensor
+Light Sensor
+Humidity/Temperature Sensor
+
+** TODO use JSON to transmit information
+Basic system is already setup, just have to force it to send correctly.
+** TODO encrypt data?
+Questionable if this is needed, but I am sure someone could find a way to destroy my life if I didn't do it.
+
+* Source code
+** Includes and Globals
 #+BEGIN_SRC cpp
   #include <esp_now.h>
   #include <WiFi.h>
@@ -22,7 +34,7 @@
   void OnDataSent(const uint8_t *, esp_now_send_status_t);
 #+END_SRC
 
-* Sensor Data Sending functions
+** Sensor Data Sending functions
 #+BEGIN_SRC cpp
   void onDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
       Serial.printf("Last packet send status: Delivery %s\n",
@@ -45,7 +57,7 @@
   }
 #+END_SRC
 
-* WiFi Setup
+** WiFi Setup
 #+BEGIN_SRC cpp
   void initESPnow() {
       WiFi.mode(WIFI_STA);
@@ -71,7 +83,7 @@
   }
 #+END_SRC
 
-* Setup
+** Setup
 #+BEGIN_SRC cpp
      void setup() {
          Serial.begin(115200);
@@ -81,7 +93,7 @@
   }
 #+END_SRC
 
-* Loop
+** Loop
 #+BEGIN_SRC cpp
   void loop() {
   }

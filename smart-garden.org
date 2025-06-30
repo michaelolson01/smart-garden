@@ -11,31 +11,39 @@ AIoT principles.
 
 * Design
 ** Cluster design
-   - *ESP8266 Sensors for cluster (Nodes)*
-     - 1 Light sensor (BH1750)
-     - 4 Soil Moisture Sensors
-     - 1 Air Temperature and Humidity Sensor (SHT31)
-     * 1 NPK Sensor for cluster (See if I can find one under $50.00 or
-       if it is possible to make one.)
-     - All have simple authenticated send/receive through MQTT protocol.
-       - receive: report on sensor(s)
-       - send: data from sensor(s)
-       - only allowed communication with Assigned Hub (ESP32)
-   - *Automatable devices (Automata)*
-     - Water distribution units
-     - Light distribution units
-     * Nutrient distribution units (How to turn compost into a liquid?)
-     - All have simple authenticated send/receive through MQTT protocol.
-       - receive: start/stop/status
-       - send: status
    - *ESP32 Hubs for clusters (Hub)*
      - Minor Management
        - Ex. If all soil sensors are indicating dry soil, start
          watering system if the Linux system is okay with it.
      - Communicates with Nodes and Automata
-       - Sends and receives requests and responses by MQTT protocol to Nodes.
+       - Only receives encrypted data from nodes using ESP-NOW interface
        - Nodes can only communicate with assigned Hub.
-     - Communicates with Linux System through2 authenticated protocols
+       - Communication is sent as encrypted JSON
+     - Hosts encrypted API
+       - list sensors / automata
+       - get last status of sensor / automata with timestamp
+       - start or stop automata
+     - Hosts Webserver
+       - Shows current status
+         - Sensors last reading with timestamp
+         - Last time connected to wifi
+         - Current version
+         - Automata status
+   - *ESP8266 Sensors for cluster (Nodes)*
+     - 1 Light sensor (BH1750)
+     - 4 Soil Moisture Sensors
+     - 1 Air Temperature and Humidity Sensor (SHT31)
+     - I have decided to use the ESP-NOW interface
+       - send: data from sensor(s)
+       - only allowed communication with assigned hub (ESP32)
+       - encrypt the data
+   - *ESP8266 Automatable devices (Automata)*
+     - Water distribution units
+     - Light distribution units
+     - Hub can start, and set a duration
+     - Hub can stop
+     - Hub can send a message for status, and the automata responds with status?
+     - Communication with automata is with encrypted ESP-NOW interface.
    - *Linux System (Base System)*
      - Monitors System.
      - Runs AI to make predictive analysis for healthy system.

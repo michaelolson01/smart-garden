@@ -1,7 +1,19 @@
-#+TITLE: Smart Garden Firmware
+#+TITLE: Sensor HUB source
 #+PROPERTY: header-args:cpp :tangle sg-hub.ino :noweb yes :exports code :mkdirp yes
 
-* Includes and Globals
+* Project Notes
+** TODO API for accessing data on the hub
+  - Data transfer is in JSON format for simplification and ease of future compatibility.
+** TODO Status Web Page
+  - Title
+  - Last data received from sensors with timestamp
+  - Uptime
+  - Current date/time
+  - Other statuses
+  - Copyright
+
+* Source Code
+** Includes and Globals
 #+BEGIN_SRC cpp
   #include <esp_now.h>
   #include <WiFi.h>
@@ -19,7 +31,7 @@
   void OnDataRecv(const uint8_t *, const uint8_t *, int);
 #+END_SRC
 
-* Sensor Receive Data
+** Sensor Receive Data
 #+BEGIN_SRC cpp
   void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) {
       char recvData[250];
@@ -30,7 +42,7 @@
   }
 #+END_SRC
 
-* WiFi Setup
+** WiFi Setup
 #+BEGIN_SRC cpp
   void initWifi() {
       WiFi.mode(WIFI_AP_STA);
@@ -69,8 +81,8 @@
       }
   }
 #+END_SRC
-  
-* Over the Air(OTA) firmware updates
+
+** Over the Air(OTA) firmware updates
 #+BEGIN_SRC cpp
   void OTAUpdateSetup() {
       ArduinoOTA.setHostname("smartGarden");
@@ -100,7 +112,7 @@
   }
 #+END_SRC
 
-* Setup
+** Setup
 #+BEGIN_SRC cpp
      void setup() {
          Serial.begin(115200);
@@ -113,7 +125,7 @@
   }
 #+END_SRC
 
-* Loop
+** Loop
 #+BEGIN_SRC cpp
   void loop() {
       ArduinoOTA.handle();
